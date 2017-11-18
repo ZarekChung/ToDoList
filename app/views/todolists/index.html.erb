@@ -1,0 +1,25 @@
+<table class="table table-hover ">
+  <tr>
+    <td></td>
+    <td>Name</td>
+    <td>Expired_date</td>
+    <td></td>
+    <td></td>
+     <td></td>
+  </tr>
+  <% @todolists.each do |todolist| %>
+  <% time = Time.new.to_date %>
+  <%#= "Today : #{Time.new.to_date} " %>
+  <tr>
+    <td><%= check_box_tag :confirm, checked = false  %></td>
+    <td><%= todolist.name %></td>
+    <td><%= todolist.expired_date %></td>
+     
+    <td><%= link_to 'Show', todolist_path(todolist) %></td>
+    <td><%= link_to 'Edit', edit_todolist_path(todolist) %></td>
+    <td><%= link_to 'Destroy', todolist_path(todolist), method: :delete, data:{confirm:"Are you sure?"} %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Todolist', new_todolist_path %>
