@@ -1,6 +1,22 @@
-<%= @todolist.name %>
-<%= @todolist.expired_date  %>
-
-<%= simple_format(@todolist.note) %>
-
-<%= link_to "back to index", todolists_path %> 
+<div class="container">
+    <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">
+            <%= @todolist.name %>
+        </th>
+        <th scope="col">
+            <%= @todolist.expired_date  %>
+        </th>
+    </thead>
+    <tbody>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <%= simple_format(@todolist.note) %>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <%= link_to "back to index", todolists_path ,:class =>'btn btn-primary'%>
+</div>

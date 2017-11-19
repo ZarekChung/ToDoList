@@ -13,3 +13,49 @@
  */
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
+ @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+// =============normal setting============
+
+* {
+  // border: solid 1px black;
+  font-family: 'Roboto Mono', cursive;
+}
+
+@font-face {
+  font-family: 'Roboto Mono', cursive;
+
+}
+
+body {
+  
+
+}
+
+thead {
+  background-color: #99BBFF ; 
+
+}
+table {
+  width : 100%;
+
+}
+
+
+li {
+  display: inline-block;
+  position: relative;
+  color: red;
+  width: 95%;
+  font-size: 14px;
+}
+.item-info
+{
+ 
+
+}
+
+.button-style
+{
+ margin: 0 auto;
+}

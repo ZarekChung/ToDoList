@@ -1,7 +1,7 @@
 class TodolistsController < ApplicationController
-  before_action :set_list, :only =>[:show, :edit, :update, :destroy]
+  before_action :set_list, :only =>[:show, :edit, :update, :destroy,:is_public]
   def index
-    @todolists = Todolist.all
+    @todolists = Todolist.order(expired_date: :desc)
   end
   
   def new
@@ -15,6 +15,11 @@ class TodolistsController < ApplicationController
     else
       render "new"
     end
+  end
+
+ 
+  def is_public
+    @todolist.update(check_box: !(@todolist.check_box))
   end
 
   def update
@@ -31,7 +36,8 @@ class TodolistsController < ApplicationController
     @todolist.destroy
     redirect_to todolists_url
   end
-  
+ 
+
   #私有方法
   private
   def set_list

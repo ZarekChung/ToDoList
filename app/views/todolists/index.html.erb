@@ -1,25 +1,48 @@
-<table class="table table-hover ">
-  <tr>
-    <td></td>
-    <td>Name</td>
-    <td>Expired_date</td>
-    <td></td>
-    <td></td>
-     <td></td>
-  </tr>
-  <% @todolists.each do |todolist| %>
-  <% time = Time.new.to_date %>
-  <%#= "Today : #{Time.new.to_date} " %>
-  <tr>
-    <td><%= check_box_tag :confirm, checked = false  %></td>
-    <td><%= todolist.name %></td>
-    <td><%= todolist.expired_date %></td>
-     
-    <td><%= link_to 'Show', todolist_path(todolist) %></td>
-    <td><%= link_to 'Edit', edit_todolist_path(todolist) %></td>
-    <td><%= link_to 'Destroy', todolist_path(todolist), method: :delete, data:{confirm:"Are you sure?"} %></td>
-  </tr>
-  <% end %>
+<div class="container">
+<h1>Zarek's notes</h1>
+<table class="table table-hover table-striped">
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task</th>
+          <th scope="col">Due Date</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+      </tr>
+  </thead>
+   <tbody>
+    <% @todolists.each do |todolist| %>
+    <% time = Time.new.to_date %>
+    <%#= "Today : #{Time.new.to_date} " %>
+     <tr>
+         <td>
+             <%= check_box_tag :is_public, true , todolist.check_box, data: { url: is_public_todolist_path(todolist), method: :post, remote: true }   %>
+         </td>
+         <td>
+             <%= todolist.name %>
+         </td>
+         <td>
+             <%= todolist.expired_date %>
+         </td>
+         <td>
+             <%= link_to 'Show', todolist_path(todolist),:class =>'btn btn-primary' %>
+         </td>
+         <td>
+             <%= link_to 'Edit', edit_todolist_path(todolist) ,:class =>'btn btn-primary' %>
+         </td>
+         <% if(todolist.expired_date - Time.new.to_date >= 0)  %>
+             <td>
+                 <%= link_to 'Destroy', todolist_path(todolist), method: :delete, data:{confirm:"Are you sure?"} ,:class =>'btn btn-danger' %>
+             </td>
+         <%else%>
+             <td>
+                 <button type="button" class="btn btn-danger" disabled="disabled">Destroy</button>
+             </td>
+         <% end %>
+     </tr>
+     <% end %>
+   </tbody>
 </table>
-
-<%= link_to 'New Todolist', new_todolist_path %>
+<%= link_to 'New Todolist', new_todolist_path ,:class =>'btn btn-primary' %>
+</div>

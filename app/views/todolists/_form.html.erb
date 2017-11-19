@@ -1,26 +1,31 @@
-<% if @todolist.errors.present? %>
-<ul>
-  <% @todolist.errors.each do |error, message| %>
-    <li>
-      <%="#{error.capitalize} #{message}"%></li>
-  <% end %>
-</ul>
-<% end %>
-<div class="form container">
-<%= form_for @todolist do |f| %>
-  <div class="form-group">
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="form-group">
-    <%= f.label :expired_date, "Expired_date" %>
-    <%= f.text_field :expired_date %>
-  </div>
-  <div class="form-group">
-    <%= f.label :note, "Note" %>
-    <%= f.text_area :note %>
-  </div> 
-
-  <%= f.submit "Create" %>
+<div class="container">
+    <% if @todolist.errors.present? %>
+        <ul>
+            <% @todolist.errors.each do |error, message| %>
+                <li>
+                    <%="#{error.capitalize} #{message}"%>
+                </li>
+                <% end %>
+        </ul>
+        <% end %>
 </div>
-<% end %>
+<div class="container">
+    <%= form_for @todolist do |f| %>
+        <div class="form-group ">
+          <label for="inputName" class="col-sm-2 control-label">Task</label>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="inputExpired_date" class="col-sm-2 control-label">Expired_date</label>
+          <%= f.text_field :expired_date, class: "form-control" ,id:"thedate" %>
+        </div>
+        <div class="form-group">
+          <label for="inputNote" class="col-sm-2 control-label">Note</label>
+          <%= f.text_area :note , class: "form-control"%>
+        </div>
+        <div class="button-style">
+          <%= link_to "back", todolists_path ,:class =>'btn btn-primary'%>
+          <%= f.submit "Submit" ,:class =>'btn btn-primary' %>
+        </div>
+        <% end %>
+</div>
